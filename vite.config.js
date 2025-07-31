@@ -12,5 +12,5 @@ export default defineConfig({
       ],
     },
   }, 
-  base: process.env.VITE_BASE_PATH || "/linkedin-vibe-check",
+  base: "/linkedin-vibe-check",
 })
