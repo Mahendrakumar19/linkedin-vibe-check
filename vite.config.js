@@ -11,5 +11,6 @@ export default defineConfig({
         autoprefixer(),
       ],
     },
-  }
+  }, 
+  base: process.env.VITE_BASE_PATH || "/linkedin-vibe-check",
 })
