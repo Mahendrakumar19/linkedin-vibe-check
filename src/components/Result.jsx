@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 
 const bios = [
@@ -16,9 +16,14 @@ const bios = [
 ];
 
 export default function Result() {
+  const navigate = useNavigate();
   useSearchParams();
   const randomIdx = Math.floor(Math.random() * bios.length);
   const shareText = `My LinkedIn Vibe: "${bios[randomIdx]}"\n\nFind yours at: ${window.location.origin}`;
+
+  function takeQuizAgain() {
+    navigate('/');
+  }
 
   function shareOnTwitter() {
     window.open(
@@ -101,6 +106,12 @@ export default function Result() {
             className="p-3 text-gray-800 bg-gray-200 rounded-lg hover:bg-gray-300"
           >
             Copy to Clipboard
+          </button>
+          <button
+            onClick={takeQuizAgain}
+            className="p-3 text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:from-purple-600 hover:to-pink-600"
+          >
+            🎯 Take Quiz Again
           </button>
         </div>
       </div>
