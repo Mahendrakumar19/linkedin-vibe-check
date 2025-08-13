@@ -5,7 +5,7 @@ import Result from "./components/Result";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/quiz" element={<Quiz />} />

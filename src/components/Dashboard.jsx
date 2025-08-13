@@ -1,17 +1,10 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Dashboard() {
   const navigate = useNavigate()
 
   function startQuiz() {
-    try {
-      console.log('Starting quiz navigation...')
-      navigate('/quiz')
-    } catch (error) {
-      console.error('Navigation error:', error)
-      // Fallback to window.location if navigate fails
-      window.location.href = '/quiz'
-    }
+    navigate('/quiz')
   }
 
   return (
@@ -45,14 +38,6 @@ export default function Dashboard() {
         >
           Start Vibe Check ✨
         </button>
-
-        {/* Backup Link in case button navigation fails */}
-        <Link 
-          to="/quiz" 
-          className="block w-full px-8 py-4 mt-4 text-lg font-bold text-center text-blue-600 transition-all duration-300 transform bg-white rounded-lg hover:bg-gray-100 hover:scale-105 active:scale-95"
-        >
-          Alternative: Start Quiz →
-        </Link>
 
         <p className="mt-4 text-sm text-gray-400">
           Takes less than 2 minutes • 100% fun guaranteed

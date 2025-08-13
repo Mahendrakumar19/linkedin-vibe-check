@@ -1,23 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/quiz",
       "destination": "/index.html"
-    }
-  ],
-  "headers": [
+    },
+    {
+      "source": "/result",
+      "destination": "/index.html"
+    },
     {
       "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        }
-      ]
+      "destination": "/index.html"
     }
   ]
 }
