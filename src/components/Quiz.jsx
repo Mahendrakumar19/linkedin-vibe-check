@@ -176,9 +176,23 @@ const allQuestions = [
 
 export default function Quiz() {
   const navigate = useNavigate()
-  const [questions] = useState(() => shuffle([...allQuestions]).slice(0, 8)) // 8 random questions
+  const [questions] = useState(() => {
+    const shuffled = shuffle([...allQuestions])
+    return shuffled.slice(0, 8)
+  })
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
+
+  // Add safety check
+  if (!questions || questions.length === 0) {
+    return (
+      <div className="flex items-center justify-center w-screen min-h-screen linkedin-blue">
+        <div className="w-full max-w-md p-8 text-center bg-gray-800 rounded-xl">
+          <h1 className="mb-4 text-4xl font-bold text-white">Loading...</h1>
+        </div>
+      </div>
+    )
+  }
 
   function handleAnswer(points) {
     const newScore = score + points
@@ -218,8 +232,8 @@ export default function Quiz() {
         </div>
 
         <h1 className="mb-8 text-3xl font-bold">LinkedIn Vibe Check</h1>
-        <h2 className="mb-6 text-xl">{questions[currentQuestion].text}</h2>
-        {questions[currentQuestion].options.map((option, i) => (
+        <h2 className="mb-6 text-xl">{questions[currentQuestion]?.text || "Loading question..."}</h2>
+        {questions[currentQuestion]?.options?.map((option, i) => (
           <button
             key={i}
             onClick={() => handleAnswer(option.points)}
@@ -227,7 +241,7 @@ export default function Quiz() {
           >
             {option.text}
           </button>
-        ))}
+        )) || <div className="text-white">Loading options...</div>}
       </div>
     </div>
   )
